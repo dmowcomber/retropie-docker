@@ -1,4 +1,6 @@
-FROM resin/rpi-raspbian
+# pin to Raspbian Jessie until RetroPie supports Raspbian Stretch
+# https://github.com/RetroPie/RetroPie-Setup/issues/2091
+FROM resin/rpi-raspbian:jessie
 RUN apt-get update \
     && apt-get upgrade \
     && apt-get install -y --no-install-recommends ca-certificates git lsb-release sudo \
@@ -12,7 +14,6 @@ RUN git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git \
     && sudo ./retropie_packages.sh setup basic_install
 
 RUN sudo rm -rf /var/lib/apt/lists/* && chown -R pi.pi /home/retropie
-#ENTRYPOINT "/bin/bash"
 RUN usermod -aG adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input pi
 USER pi
 ENTRYPOINT "/usr/bin/emulationstation"
