@@ -1,16 +1,17 @@
 version: "2"
 services:
   retropie:
+    volumes:
     build: .
     volumes:
-      # - /dev/snd:/dev/snd
-      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/snd:/dev/snd
+      - /tmp/.X11-unix/:/tmp/.X11-unix/
       - $HOME/RetroPie/.emulstation:/home/pi/.emulstations
       - $HOME/RetroPie:/home/pi/RetroPie
-#      - /run/user/$(id -u):/run/user/$(id -u)
-      # - /var/run/dbus:/var/run/dbus
-      # - /dev/bus/usb:/dev/bus/usb
+      - /var/run/dbus:/var/run/dbus
+      - /dev/bus/usb:/dev/bus/usb
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DISPLAY=unix$DISPLAY
+      - DISPLAY=unix
     privileged: true
+    command: emulationstation
