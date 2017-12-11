@@ -1,6 +1,6 @@
 # pin to Raspbian Jessie until RetroPie supports Raspbian Stretch
 # https://github.com/RetroPie/RetroPie-Setup/issues/2091
-FROM resin/rpi-raspbian:jessie
+FROM ubuntu:16.04
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends ca-certificates git lsb-release sudo \
@@ -8,7 +8,7 @@ RUN apt-get update \
     && echo "pi ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/pi
 
 RUN sudo chown -R pi:pi /root
-RUN usermod -aG adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input pi
+RUN usermod -aG adm,dialout,cdrom,sudo,audio,video,plugdev,games,users pi
 # emulationstation does not like to run as root
 USER pi
 
