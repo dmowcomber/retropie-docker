@@ -16,7 +16,7 @@ WORKDIR /home/retropie
 RUN git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git \
     && cd RetroPie-Setup \
     && sudo chmod +x retropie_setup.sh \
-    && sudo __platform=rpi1 ./retropie_packages.sh setup basic_install
+    && sudo ./retropie_packages.sh setup basic_install
 
 USER root
 RUN sudo rm -rf /var/lib/apt/lists/* && chown -R pi.pi /home/retropie
