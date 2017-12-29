@@ -6,12 +6,17 @@ services:
     volumes:
       - /dev/snd:/dev/snd
       - /tmp/.X11-unix/:/tmp/.X11-unix/
-      - $HOME/RetroPie/.emulstation:/home/pi/.emulstations
-      - $HOME/RetroPie:/home/pi/RetroPie
+      #- $HOME/RetroPie/.emulstation:/home/retropie/.emulstations
+      #- $HOME/RetroPie:/home/retropie/RetroPie
+      - .:/home/retropie/local
       - /var/run/dbus:/var/run/dbus
       - /dev/bus/usb:/dev/bus/usb
       - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/tty:/dev/tty
+      - /dev/tty1:/dev/tty1
     environment:
       - DISPLAY=unix
     privileged: true
     command: emulationstation
+    stdin_open: true
+    tty: true
